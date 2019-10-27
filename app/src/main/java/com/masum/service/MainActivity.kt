@@ -23,6 +23,7 @@ class MainActivity : AppCompatActivity() {
         val intent = Intent(this, MyBroadCast::class.java)
         button.setOnClickListener {
 
+            intent.putExtra("intent", 1)
             val date = Date()
             //This method returns the time in millis
             val timeMilli = date.getTime()
@@ -41,6 +42,9 @@ class MainActivity : AppCompatActivity() {
 
         btnstop.setOnClickListener {
             val date = Date()
+            intent.putExtra("intent", 2)
+
+            stopService(Intent(this,MyService::class.java))
             //This method returns the time in millis
             val timeMilli = date.getTime()
             manager.set(

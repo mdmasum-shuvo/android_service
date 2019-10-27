@@ -31,6 +31,7 @@ class MyService : Service() {
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
 
         Log.e("run", "service started")
+
         if (mTimer != null) {
             mTimer!!.cancel()
             mTimerTask!!.cancel()
@@ -41,7 +42,9 @@ class MyService : Service() {
 
         mTimerTask = object : TimerTask() {
             override fun run() {
-                Log.e("run", "service task running:" + ++count)
+                mHandler.post {
+                    Log.e("run", "service task running:" + ++count)
+                }
             }
         }
         mTimer!!.scheduleAtFixedRate(mTimerTask, 0, NOTIFY_INTERVAL)

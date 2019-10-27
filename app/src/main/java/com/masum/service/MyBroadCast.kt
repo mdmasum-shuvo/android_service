@@ -8,9 +8,7 @@ import android.widget.Toast
 
 class MyBroadCast : BroadcastReceiver() {
     override fun onReceive(context: Context?, intent: Intent?) {
-
         Log.e("run", "start broadcast")
         context!!.startService(Intent(context, MyService::class.java))
-
     }
 }
