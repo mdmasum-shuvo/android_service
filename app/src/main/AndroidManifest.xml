@@ -17,9 +17,9 @@
             </intent-filter>
         </activity>
 
-        <service android:name=".MyService" />
-        <receiver android:name=".MyBroadCast"
+        <service android:name=".MyService"
             android:enabled="true"/>
+
     </application>
 
 </manifest>

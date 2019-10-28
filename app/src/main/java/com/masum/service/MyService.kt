@@ -6,6 +6,16 @@ import android.os.IBinder
 import android.util.Log
 import android.os.Handler
 import java.util.*
+import android.R.string.cancel
+import androidx.core.content.ContextCompat.getSystemService
+import android.icu.lang.UCharacter.GraphemeClusterBreak.T
+import android.R.string.cancel
+import androidx.core.content.ContextCompat.getSystemService
+import android.icu.lang.UCharacter.GraphemeClusterBreak.T
+
+
+
+
 
 
 class MyService : Service() {
@@ -34,9 +44,20 @@ class MyService : Service() {
             }
         }
         mTimer!!.scheduleAtFixedRate(mTimerTask, 0, NOTIFY_INTERVAL)
-        return super.onStartCommand(intent, flags, startId)
+        return START_NOT_STICKY
     }
 
+    override fun onDestroy() {
+        mTimer!!.cancel()
+        mTimerTask!!.cancel()
+    }
+    override fun stopService(name: Intent): Boolean {
+        // TODO Auto-generated method stub
+        mTimer!!.cancel()
+        mTimerTask!!.cancel()
+        return super.stopService(name)
+
+    }
     override fun onBind(intent: Intent?): IBinder? {
 
         return null
